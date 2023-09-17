@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  mariadb:
+    image: 'mariadb:10'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=app
+
+  application:
+    build:
+      context: ../
+    volumes:
+      - '../app:/var/www'
+    ports:
+      - '9090:80'

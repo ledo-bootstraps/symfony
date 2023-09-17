@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+  mariadb:
+    image: 'mariadb:10'
+    env_file: ../.env
+    volumes:
+      - sql_volume:/var/lib/mysql
+    networks:
+      - inbound
+
+  application:
+    image: 'aplication'
+    env_file: ../.env
+    networks:
+      - inbound
+
+volumes:
+  sql_volume: {}
+
+networks:
+  inbound:
+    external:
+      name: inbound
